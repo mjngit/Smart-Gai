@@ -8,6 +8,7 @@ export const Loader = () => {
                     alt='logo'
                     fill
                     src = '/logo.png'
+                    sizes= "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
             </div>
             <p className="text-sm text-muted-foreground">
