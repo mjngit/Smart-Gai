@@ -4,14 +4,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Montserrat } from 'next/font/google';
 import { usePathname } from "next/navigation"
-
-import { cn } from '@/lib/utils';
-import { Code, ImageIcon, 
+import { 
+    Code, 
+    ImageIcon, 
     LayoutDashboard, 
     MessageSquare, 
     Music, 
     Settings, 
     VideoIcon} from 'lucide-react';
+    
+import { FreeCounter } from '@/components/free-counter';
+import { cn } from '@/lib/utils';
 
 const monserrat = Montserrat({ 
     weight: '600', 
@@ -62,7 +65,13 @@ const routes = [
     }
 ]
 
-function Sidebar() {
+interface SidebarProps {
+    apiLimitCount: number;
+}
+
+function Sidebar({
+    apiLimitCount = 0
+}: SidebarProps) {
     const pathname = usePathname();
 
   return (
@@ -98,6 +107,10 @@ function Sidebar() {
 
             </div>
         </div>
+        {/* we are fetching the apilimitcount in a server component because they have access to prisma and using that to pass it as a prop to sidebar (client component) and then passing that prop to freecounter */}
+        <FreeCounter 
+            apiLimitCount={apiLimitCount}
+        />
     </div>
   )
 }
