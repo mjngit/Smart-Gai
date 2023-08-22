@@ -33,7 +33,7 @@ if(!mounted) {
                             { apiLimitCount } / { MAX_FREE_COUNTS } Freebies
                         </p>
                         <Progress 
-                            className='h-3'
+                            className='h-3 mb-2 mt-1'
                             value={(apiLimitCount / MAX_FREE_COUNTS) * 100}
                         />
                         <Button className="w-full" variant='premium'>
