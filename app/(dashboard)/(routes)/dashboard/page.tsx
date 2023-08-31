@@ -42,7 +42,6 @@ const tools = [
     bgColor: 'bg-green-700/10',
     href: '/code'
   }
-
 ]
 
 export default function DashboardPage() {

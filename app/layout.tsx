@@ -1,8 +1,11 @@
 import './globals.css'
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { ClerkProvider } from '@clerk/nextjs'
+
 import { ModalProvider } from '@/components/ui/modal-provider'
+import { ToasterProvider } from '@/components/toaster-provider'
 
 
 
@@ -23,7 +26,9 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ModalProvider />
-          {children}</body>
+          <ToasterProvider />
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   )

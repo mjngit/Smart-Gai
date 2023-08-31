@@ -18,3 +18,14 @@ model UserApiLimit {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model UserSubscription {
+  id                     String    @id @default(cuid())
+  userId                 String    @unique
+  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
+  stripePriceId          String?   @map(name: "stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+}
+
+//npx prisma migrate reset is a way to reset your entire database in prisma... just have to do npx prisma generate again after resetting and npx prisma db push same as when you make any big change to your database model

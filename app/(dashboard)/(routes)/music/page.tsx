@@ -20,11 +20,15 @@ import { Button } from '@/components/ui/button';
 
 import { Empty } from '@/components/empty';
 import { Loader } from '@/components/loader';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 import { formSchema } from './constants';
+import { toast } from 'react-hot-toast';
+
 
 
 export default function MusicPage() {
+    const proModal = useProModal()
     const router = useRouter()
 
     const [music, setMusic] = useState<string>();
@@ -47,8 +51,11 @@ export default function MusicPage() {
             setMusic(response.data.audio)
             form.reset();
         } catch (error: any) {
-            //TODO: OPEN PRO MODAL
-            console.log(error)
+            if(error?.response?.status === 403){
+                proModal.onOpen()
+            } else {
+                toast.error('Something went wrong!')
+            }
         } finally {
             router.refresh();
         }
